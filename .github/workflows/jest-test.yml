@@ -1,0 +1,22 @@
+name: run tests with jest
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  jest-test:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Run Jest
+        run: npm run test
+  
